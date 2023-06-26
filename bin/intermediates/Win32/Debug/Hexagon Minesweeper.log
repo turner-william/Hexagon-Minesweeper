@@ -1,2 +1,4 @@
 ﻿  Main.cpp
+  SDL_Handler.cpp
+  Generating Code...
   Hexagon Minesweeper.vcxproj -> C:\Dev\Cpp\Hexagon Minesweeper\bin\Win32\Debug\Hexagon Minesweeper.exe

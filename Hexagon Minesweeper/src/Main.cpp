@@ -1,18 +1,22 @@
-#include "SDL.h"
+#include "SDL_Handler.h"
 
 int main(int argc, char* argv[])
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("Hexagon Minesweeper", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+	SDL_Handler* handler = new SDL_Handler();
 
-	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+	handler->CreateWindow();
 
-	SDL_RenderClear(renderer);
+	bool gameRunning = true;
 
-	SDL_RenderPresent(renderer);
-
-	SDL_Delay(3000);
-
+	while (gameRunning)
+	{
+		while (SDL_PollEvent(&handler->m_event))
+		{
+			if (handler->m_event.type == SDL_QUIT)
+			{
+				gameRunning = false;
+			}
+		}
+	}
 	return 0;
 }
