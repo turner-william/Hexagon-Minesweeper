@@ -159,11 +159,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Asset_Manager.cpp" />
     <ClCompile Include="src\HexTile.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\SDL_Handler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Asset_Manager.h" />
     <ClInclude Include="src\HexTile.h" />
     <ClInclude Include="src\SDL_Handler.h" />
   </ItemGroup>

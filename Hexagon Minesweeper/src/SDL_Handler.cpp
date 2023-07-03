@@ -29,40 +29,7 @@ SDL_Handler::SDL_Handler()
 		SDL_WINDOW_SHOWN);	//Window Type
 
 	//creating renderer
-	m_renderer = SDL_CreateRenderer(m_window, -1, 0);
-}
-
-//texture loader
-SDL_Texture* SDL_Handler::loadTexture(std::string filename)
-{
-	SDL_Surface* loadedImage = NULL;
-
-	loadedImage = IMG_Load(filename.c_str());
-
-	if (loadedImage == NULL)
-	{
-		std::cout << "File failed to load: '" << filename << "'\n";
-	}
-
-	SDL_Texture* text = SDL_CreateTextureFromSurface(m_renderer, loadedImage);
-
-	return text;
-}
-
-//assigning a rectangle to the file that was loaded
-void SDL_Handler::DrawRectangle(SDL_Rect srcrect, SDL_Rect destrect, SDL_Texture* text)
-{
-	if (text)
-	{
-		SDL_RenderCopy(m_renderer, text, &srcrect, &destrect);
-		SDL_RenderPresent(m_renderer);
-
-		SDL_UpdateWindowSurface(m_window);
-	}
-	else
-	{
-		std::cout << "DrawRectangle: text was nullptr\n";
-	}
+	renderer = SDL_CreateRenderer(m_window, -1, 0);
 }
 
 //destructor
@@ -70,6 +37,34 @@ SDL_Handler::~SDL_Handler()
 {
 	SDL_FreeSurface(m_screen_surface);
 	SDL_DestroyWindow(m_window);
-	SDL_DestroyRenderer(m_renderer);
+	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
+}
+
+//renderer clearer
+int SDL_Handler::ClearRenderer()
+{
+	return SDL_RenderClear(renderer);
+}
+
+SDL_Texture* SDL_Handler::LoadTexture(SDL_Surface* LoadedSurface)
+{
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, LoadedSurface);
+	return texture;
+}
+
+//assigning a rectangle to the file that was loaded
+void SDL_Handler::DrawRectangle(SDL_Rect srcrect, SDL_Rect destrect, SDL_Texture* text)
+{
+	if (text)
+	{
+		SDL_RenderCopy(renderer, text, &srcrect, &destrect);
+		SDL_RenderPresent(renderer);
+
+		SDL_UpdateWindowSurface(m_window);
+	}
+	else
+	{
+		std::cout << "DrawRectangle: text was nullptr\n";
+	}
 }

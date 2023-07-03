@@ -1,5 +1,6 @@
 #include "SDL_Handler.h"
 #include "HexTile.h"
+#include "Asset_Manager.h"
 #include <iostream>
 
 int main(int argc, char* argv[])
@@ -20,8 +21,12 @@ int main(int argc, char* argv[])
 		"../../../Hexagon Minesweeper/res/4_Hexagon.png",
 		"../../../Hexagon Minesweeper/res/5_Hexagon.png",
 		"../../../Hexagon Minesweeper/res/6_Hexagon.png",
-		"../../../Hexagon Minesweeper/res/Bomb_Hexagon.png"
-	};
+		"../../../Hexagon Minesweeper/res/Bomb_Hexagon.png"};
+
+	//asset manager
+	Asset_Manager Asset_Manager(filePaths, handler.renderer);
+	Asset_Manager.LoadAssets();
+
 	int mouseButtonClickedCounter = 0;
 
 	bool gameRunning = true;
@@ -38,7 +43,17 @@ int main(int argc, char* argv[])
 				break;
 
 			case (SDL_MOUSEBUTTONDOWN):
-				tile.render(filePaths[mouseButtonClickedCounter]);
+				if (handler.ClearRenderer() == 0)
+				{
+					std::cout << "Renderer Successfully Cleared.\n";
+				}
+				else
+				{
+					std::cout << "WARNING: Renderer Failed to Clear.\n";
+				}
+
+				tile.render(Asset_Manager.Assets[mouseButtonClickedCounter]);
+
 				if (mouseButtonClickedCounter < 8)
 				{
 					mouseButtonClickedCounter++;
@@ -56,5 +71,8 @@ int main(int argc, char* argv[])
 			}
 		}
 	}
+	//destroying assets
+	Asset_Manager.DestroyAssets();
+
 	return 0;
 }

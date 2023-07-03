@@ -4,18 +4,18 @@
 class HexTile
 {
 public:
-	//renders a tile object
-	void render(std::string filePath);
-
 	//constructor
 	HexTile(SDL_Handler& handler);
 
 	//destructor
 	~HexTile();
 
+	//renders a tile object
+	void render(SDL_Texture* texture);
+
 private:
-	const int m_TILE_WIDTH = 58;
-	const int m_TILE_HEIGHT = 68;
+	static const int m_TILE_WIDTH = 58;
+	static const int m_TILE_HEIGHT = 68;
 
 	//using this coordinate system for the tiles:
 	//https://stackoverflow.com/questions/2459402/hexagonal-grid-coordinates-to-pixel-coordinates
