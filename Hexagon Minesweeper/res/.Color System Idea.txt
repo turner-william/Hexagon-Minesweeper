@@ -1,0 +1,9 @@
+unknown bomb count: Gray
+0 bombs: silver blue
+1 bomb: light blue
+2 bombs: dark blue
+3 bombs: dark green
+4 bombs: dark yellow
+5 bombs: light purple
+6 bombs: dark purple
+bomb: dark red with black flag in the middle

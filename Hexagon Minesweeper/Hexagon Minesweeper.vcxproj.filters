@@ -21,9 +21,15 @@
     <ClCompile Include="src\SDL_Handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\HexTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SDL_Handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HexTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
